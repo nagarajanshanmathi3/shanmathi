@@ -1,0 +1,21 @@
+name: Secrets Demo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-secret:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use API Key
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+        run: |
+          echo "The API key has been provided to this step."
+          echo "The secret is available to the script."
